@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/*
+ * PATHD design tokens.
+ * Purple + Cream = identity. Peach = jobs/actions. Lavender = community.
+ * Olive = wellness/Reset. Gold = achievements, verified, premium.
+ * Text colors are chosen for WCAG AA on cream; brand olive/gold are
+ * used as fills, with darker "ink" variants for text.
+ */
+@theme {
+  --color-plum: #49355f;
+  --color-plum-deep: #2f2140;
+  --color-plum-soft: #6d5a84;
+  --color-peach: #f2a889;
+  --color-peach-deep: #e0876a;
+  --color-peach-wash: #fbe3d8;
+  --color-lavender: #c9b8e4;
+  --color-lavender-wash: #eee7f7;
+  --color-olive: #747a4c;
+  --color-olive-ink: #545936;
+  --color-olive-wash: #e6e7d6;
+  --color-cream: #f7f0e3;
+  --color-paper: #fffbf4;
+  --color-gold: #c6a15b;
+  --color-gold-ink: #7d6230;
+  --color-gold-wash: #f3e8cf;
+  --color-line: #e5d9c4;
+
+  --font-display: var(--font-marcellus), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1.25rem;
+  --shadow-card: 0 1px 2px rgb(73 53 95 / 0.06), 0 8px 24px -12px rgb(73 53 95 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(73 53 95 / 0.08), 0 18px 40px -16px rgb(73 53 95 / 0.28);
+}
+
+@layer base {
+  html {
+    background: var(--color-cream);
+    color: var(--color-plum-deep);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    min-height: 100dvh;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-plum);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  ::selection {
+    background: var(--color-lavender);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hero route draws itself once on load. */
+@keyframes draw-route {
+  from { stroke-dashoffset: var(--route-length, 1400); }
+  to { stroke-dashoffset: 0; }
+}
+.route-draw {
+  stroke-dasharray: var(--route-length, 1400);
+  animation: draw-route 1.8s cubic-bezier(0.65, 0, 0.35, 1) 0.2s both;
+}
