@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "build:cloudflare": "opennextjs-cloudflare build",
+    "deploy:cloudflare": "opennextjs-cloudflare build && wrangler deploy"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.60.0",
@@ -32,7 +34,9 @@
     "eslint-config-next": "^15.4.0",
     "tailwindcss": "^4.1.0",
     "typescript": "^5.8.0",
-    "vitest": "^3.2.0"
+    "vitest": "^3.2.0",
+    "@opennextjs/cloudflare": "^1.16.0",
+    "wrangler": "^4.0.0"
   },
   "engines": {
     "node": ">=20"
