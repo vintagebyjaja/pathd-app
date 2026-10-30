@@ -6,6 +6,7 @@ const questions = [
   "What was the name of your first creative project?",
 ];
 export default function SecuritySetup() {
+  const [generateCodes,setGenerateCodes] = useState(false);
   const [account, setAccount] = useState<any>(null),
     [password, setPassword] = useState(""),
     [answers, setAnswers] = useState(["", ""]),
@@ -27,15 +28,16 @@ export default function SecuritySetup() {
   async function save(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
+    setError("");
     try {
       const r = await fetch("/api/companion/recovery/enroll", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ password, questions: qs, answers }),
+        body: JSON.stringify({ password, questions: qs, answers, generate_codes: generateCodes }),
       });
       const d = await r.json();
       if (!r.ok) throw new Error(d.error);
-      setCodes(d.codes);
+      setCodes(d.codes || []);
       setPassword("");
       setAnswers(["", ""]);
       setEditing(false);
@@ -49,6 +51,7 @@ export default function SecuritySetup() {
   return (
     <section className="rounded-2xl border border-line bg-paper p-6">
       <h1 className="font-display text-3xl text-plum">Account security</h1>
+      <a href="/home">Back to PATHD</a> · <a href="/explore">Explore the free site</a>
       <p className="my-3">
         Your existing identity works on AELIO and PATHD. Enroll once; no new
         registration needed.
@@ -137,11 +140,12 @@ export default function SecuritySetup() {
             />
           </label>
           <p>
-            Answers use salted slow hashing. An unused recovery code is also
-            required to reset your password.
+            Saving answers leaves your password unchanged. Questions alone cannot
+            reset a password; secure email recovery remains available.
           </p>
+          <label><input type="checkbox" checked={generateCodes} onChange={(e)=>setGenerateCodes(e.target.checked)} /> Also generate new backup codes (optional; replaces old codes)</label>
           <button disabled={busy} className="rounded-xl bg-plum p-3 text-cream">
-            {busy ? "Saving…" : "Save recovery and generate codes"}
+            {busy ? "Saving…" : "Save recovery answers"}
           </button>
         </form>
       )}

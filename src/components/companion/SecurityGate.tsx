@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { isSupabaseConfigured } from "@/lib/env";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
-import SecuritySetup from "./SecuritySetup";
+
 export default function SecurityGate({
   children,
 }: {
@@ -41,7 +41,8 @@ export default function SecurityGate({
           {error}
         </p>
       )}
-      {needs && path != "/settings/security" ? <SecuritySetup /> : children}
+      {needs && path != "/settings/security" && <p className="mb-4 rounded-xl bg-peach p-3">Your account is ready. Recovery setup is optional in <a href="/settings/security">Account security</a>.</p>}
+      {children}
     </>
   );
 }

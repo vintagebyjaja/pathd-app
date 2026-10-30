@@ -61,12 +61,11 @@ export async function signUp(_: AuthState, form: FormData): Promise<AuthState> {
   if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !form.get("captcha-token"))
     return { error: "Complete the abuse-prevention check." };
   if(parsed.data.password.length<12)return {error:"Use at least 12 characters for a new password."};
-  try{const readiness=await companionFetch('/status');const status=await readiness.json();if(!readiness.ok||!status.accounts||!status.databaseConfigured||!status.sessionConfigured)return {error:'Secure account setup is not configured yet. Please contact the site owner. No account has been created.'};}catch{return {error:'Account setup could not be reached. Try again before creating an account.'};}
   const { data, error } = await sb.auth.signUp({
     ...parsed.data,
     options: {
       captchaToken: String(form.get("captcha-token") || ""),
-      emailRedirectTo: `${origin}/auth/callback?next=/settings/security`,
+      emailRedirectTo: `${origin}/auth/callback?next=/home`,
       data: {
         signup_product: "pathd",
         display_name: String(form.get("display_name") || "").slice(0, 80),
@@ -93,23 +92,12 @@ export async function signUp(_: AuthState, form: FormData): Promise<AuthState> {
       },
       data.session.access_token,
     );
-    const d = await r.json();
-    if (!r.ok)
-      return {
-        error:
-          "Your account was created. Sign in and finish Account Security Setup; do not register again.",
-      };
-    return {
-      codes: d.codes,
-      message:
-        "Your Free account is ready on both platforms. Save these recovery codes.",
-    };
+    if (!r.ok) console.error(JSON.stringify({event:"pathd_optional_recovery_save_failed",status:r.status}));
   } catch {
-    return {
-      error:
-        "Your account was created, but recovery setup needs the private companion service. Sign in to finish setup; do not register again.",
-    };
+    console.error(JSON.stringify({event:"pathd_optional_recovery_unavailable"}));
   }
+  // A verified new account remains usable even when optional recovery is unavailable.
+  redirect("/home");
 }
 
 export async function signIn(_: AuthState, form: FormData): Promise<AuthState> {
@@ -138,7 +126,7 @@ export async function signIn(_: AuthState, form: FormData): Promise<AuthState> {
     // security-sensitive recovery actions still require their own authorization.
     redirect(next);
   }
-  redirect(shared?.user?.recovery_enrolled ? next : "/settings/security");
+  redirect(next);
 }
 
 export async function signOut() {

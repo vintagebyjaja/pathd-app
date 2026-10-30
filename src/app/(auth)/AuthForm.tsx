@@ -107,8 +107,8 @@ export function AuthForm({
       {signup && !demo && (
         <>
           <p className="text-sm">
-            Choose two different recovery questions. A secure single-use
-            recovery code is also required for account recovery.
+            Choose two different recovery questions. Your password stays unchanged.
+            Questions alone cannot reset a password; secure email recovery is available.
           </p>
           {[1, 2].map((i) => (
             <div key={i}>

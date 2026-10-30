@@ -17,3 +17,10 @@ The latest user requests a migration-branch preview and will approve main later.
 ## Main promotion approved — 2026-10-30
 
 The user explicitly approved pushing the reviewed migration update to main, separately from AELIO. Git-triggered Cloudflare builds are permitted. No manual deployment, production SQL, settings or secret changes are authorized. The owner will run the shared Supabase SQL personally.
+
+
+## 0.1.4 — Optional recovery and sign-in repair (2026-10-30)
+
+Owner authorizes pushing this repair to main in each separate repository. Verified sign-in never forces recovery enrollment. Public browsing remains available; private account data still requires authentication. Signup no longer depends on optional companion/guest configuration. Saving recovery answers does not change passwords or sessions and preserves existing backup codes; new codes require explicit opt-in. Current-password verification remains required when editing security settings. Shared identities do not merge subscriptions or browser sessions.
+
+Run AELIO migration `20261030000007_optional_recovery.sql` once after the already-applied 05 and 06 for answer-only saving. Do not rerun old migrations. Sign-in is independent of 07. No production SQL, credentials/settings changes or manual deployment performed. Local fixture checks do not verify production Auth or Cloudflare runtime configuration.
