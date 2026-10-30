@@ -1,8 +1,27 @@
 {
+  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "pathd-app",
   "main": ".open-next/worker.js",
-  "compatibility_date": "2026-10-29",
-  "compatibility_flags": ["nodejs_compat"],
-  "assets": {"directory": ".open-next/assets", "binding": "ASSETS"},
-  "services": [{"binding": "AELIO_PLATFORM", "service": "aelio-live"}]
+  "compatibility_date": "2025-03-01",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "nodejs_compat_populate_process_env"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "pathd-app"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "pathd-opennext-cache"
+    }
+  ],
+  "keep_vars": true
 }

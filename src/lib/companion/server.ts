@@ -1,7 +1,7 @@
 import "server-only";
 import { headers as requestHeaders } from "next/headers";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
-/** Private service binding; local HTTP fallback is restricted to loopback development. */
+/** Optional private binding; fixed HTTPS in production, explicit loopback in development. */
 export async function companionFetch(
   path: string,
   init: RequestInit = {},
@@ -18,13 +18,11 @@ export async function companionFetch(
   const local = process.env.AELIO_PLATFORM_LOCAL_ORIGIN;
   let base = "http://aelio-platform.internal";
   if (!binding) {
-    if (
-      process.env.NODE_ENV === "production" ||
-      !local ||
-      !["localhost", "127.0.0.1"].includes(new URL(local).hostname)
-    )
-      base='https://aelio.live';
-    else base = local!;
+    if(process.env.NODE_ENV==='production')base='https://aelio.live';
+    else{
+      if(!local||!['localhost','127.0.0.1'].includes(new URL(local).hostname))throw Error('Configure a loopback AELIO_PLATFORM_LOCAL_ORIGIN for local development.');
+      base=local;
+    }
   }
   const headers = new Headers(init.headers);
   try {

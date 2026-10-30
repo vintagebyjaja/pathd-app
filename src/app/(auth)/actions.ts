@@ -60,7 +60,7 @@ export async function signUp(_: AuthState, form: FormData): Promise<AuthState> {
     return { error: "Complete two different recovery questions and answers." };
   if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !form.get("captcha-token"))
     return { error: "Complete the abuse-prevention check." };
-  if(parsed.data.password.length<12)return {error:"Use at least12 characters for a new password."};
+  if(parsed.data.password.length<12)return {error:"Use at least 12 characters for a new password."};
   try{const readiness=await companionFetch('/status');const status=await readiness.json();if(!readiness.ok||!status.accounts||!status.databaseConfigured||!status.sessionConfigured)return {error:'Secure account setup is not configured yet. Please contact the site owner. No account has been created.'};}catch{return {error:'Account setup could not be reached. Try again before creating an account.'};}
   const { data, error } = await sb.auth.signUp({
     ...parsed.data,
@@ -129,11 +129,13 @@ export async function signIn(_: AuthState, form: FormData): Promise<AuthState> {
   // Same message for unknown email and wrong password, to avoid account enumeration.
   if (error)
     return { error: authMessage(error) };
+  const verified = await sb.auth.getUser();
+  if (verified.error || !verified.data.user) return {error: "Your session could not be verified. Please sign in again."};
   const { data: shared, error: profileError } = await sb
     .schema("core")
     .from("profiles")
     .select("recovery_enrolled_at")
-    .eq("user_id", (await sb.auth.getUser()).data.user?.id || "00000000-0000-0000-0000-000000000000")
+    .eq("user_id", verified.data.user.id)
     .maybeSingle();
   if (profileError)
     return {

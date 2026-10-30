@@ -8,6 +8,7 @@ export async function createSupabaseServerClient() {
   const cookieStore = await cookies();
   const config=getPublicSupabaseConfig();if(!config.configured)throw Error("Supabase sign-in needs public runtime/build configuration.");
   return createServerClient(config.url, config.key, {
+    cookieOptions:{secure:process.env.NODE_ENV==='production',sameSite:'lax',path:'/'},
     cookies: {
       getAll: () => cookieStore.getAll(),
       setAll: (toSet: { name: string; value: string; options: CookieOptions }[]) => {

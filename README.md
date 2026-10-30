@@ -1,6 +1,6 @@
-# Current local candidate: PATHD 0.1.1 / AELIO_v1.0.1
+# PATHD 0.1.2 — independent career platform
 
-Read PROJECT_OVERVIEW.md and PROJECT_HANDOFF.md first. Continue using the existing AELIO × PATHD Supabase project; do not create a new project. Current Cloudflare build is `npm run build:cloudflare`; the owner handles any later deployment. Historical Netlify/GitHub setup notes below are not authorization to deploy or push.
+Read PROJECT_OVERVIEW.md and PROJECT_HANDOFF.md first. Continue using the existing AELIO × PATHD Supabase project; do not create a new project. Current Cloudflare build is `npm run build:cloudflare`. Validated source is pushed only to PATHD; existing Git integration may deploy it automatically. No manual deployment is performed. See config/V0_1_2_SETUP.md. Historical Netlify/GitHub setup notes below are not authorization to deploy or push.
 
 ---
 
@@ -13,7 +13,7 @@ See `PRODUCT_SPEC.md` for the product rules and `IMPLEMENTATION_STATUS.md` for p
 
 ```bash
 npm install
-cp .env.example .env.local   # leave blank for demo mode
+cp .env.example .env.local   # add public Supabase credentials; missing keys disable account features
 npm run dev                  # http://localhost:3000
 npm test                     # match-engine tests
 ```
@@ -63,7 +63,7 @@ Never commit `.env.local` or any keys. `.gitignore` already excludes them.
 ## Deploy on Netlify
 1. At netlify.com choose **Add new project → Import from Git** and pick the `pathd` repo.
    Build settings come from `netlify.toml`.
-2. First deploy with no environment variables: the site runs in demo mode with sample data.
+2. Historical note: missing production variables now disable account features rather than creating demo sessions. Local demo mode requires an explicit NEXT_PUBLIC_PATHD_DEMO_MODE=true and is unavailable in production.
 3. Then add the variables from `.env.example` under **Site settings → Environment variables**
    (set `NEXT_PUBLIC_SITE_URL` to your Netlify address) and redeploy.
 4. Add your custom domain under **Domain management**. HTTPS is automatic.
