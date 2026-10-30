@@ -84,7 +84,7 @@ async function route(
     }
 
     if (
-      !/^\/(account(?:\/export)?|recovery\/(enroll|reset)|agents|conversations(?:\/[a-f0-9-]+(?:\/(messages|respond|cancel))?)?|career\/(records|reminders|notifications)(?:\/[a-f0-9-]+)?)$/.test(
+      !/^\/(account(?:\/(export|health))?|recovery\/(enroll|reset)|agents|conversations(?:\/[a-f0-9-]+(?:\/(messages|respond|cancel))?)?|career\/(records|reminders|notifications)(?:\/[a-f0-9-]+)?)$/.test(
         path,
       )
     )
@@ -153,6 +153,7 @@ async function route(
           upstream.headers.get("content-type") || "application/json",
         "cache-control": "no-cache, no-store, no-transform",
         "x-accel-buffering":"no",
+        ...(upstream.headers.get('x-request-id')?{'x-request-id':upstream.headers.get('x-request-id')!}:{}),
       },
     });
   } catch {

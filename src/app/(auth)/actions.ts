@@ -44,20 +44,6 @@ export async function signUp(_: AuthState, form: FormData): Promise<AuthState> {
   const { createSupabaseServerClient } = await import("@/lib/supabase/server");
   const sb = await createSupabaseServerClient();
   const origin = process.env.NEXT_PUBLIC_SITE_URL ?? "https://mypathd.com";
-  const questions = [
-      String(form.get("question1") || ""),
-      String(form.get("question2") || ""),
-    ],
-    answers = [
-      String(form.get("answer1") || ""),
-      String(form.get("answer2") || ""),
-    ];
-  if (
-    questions.some((q) => q.length < 8 || q.length > 160) ||
-    questions[0] === questions[1] ||
-    answers.some((a) => a.trim().length < 3 || a.length > 200)
-  )
-    return { error: "Complete two different recovery questions and answers." };
   if (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && !form.get("captcha-token"))
     return { error: "Complete the abuse-prevention check." };
   if(parsed.data.password.length<12)return {error:"Use at least 12 characters for a new password."};
@@ -78,25 +64,7 @@ export async function signUp(_: AuthState, form: FormData): Promise<AuthState> {
       message:
         "Check your email to confirm your account, then come back to finish setup.",
     };
-  try {
-    const r = await companionFetch(
-      "/recovery/enroll",
-      {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          password: parsed.data.password,
-          questions: [form.get("question1"), form.get("question2")],
-          answers: [form.get("answer1"), form.get("answer2")],
-        }),
-      },
-      data.session.access_token,
-    );
-    if (!r.ok) console.error(JSON.stringify({event:"pathd_optional_recovery_save_failed",status:r.status}));
-  } catch {
-    console.error(JSON.stringify({event:"pathd_optional_recovery_unavailable"}));
-  }
-  // A verified new account remains usable even when optional recovery is unavailable.
+  // Recovery questions are optional settings, never a registration prerequisite.
   redirect("/home");
 }
 

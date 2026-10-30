@@ -1,4 +1,5 @@
 "use client";
+import {ModernSecurity} from "./ModernSecurity";
 import { useState, useEffect } from "react";
 const questions = [
   "What was a nickname only your family used?",
@@ -21,7 +22,7 @@ export default function SecuritySetup() {
         const d = await r.json();
         if (!r.ok) throw new Error(d.error);
         setAccount(d);
-        setEditing(!d.user.recovery_enrolled);
+        setEditing(false);
       })
       .catch((e) => setError(e.message));
   }, []);
@@ -63,8 +64,7 @@ export default function SecuritySetup() {
           <h2>Connected applications</h2>
           {account.plans.map((p: any) => (
             <p key={p.product}>
-              {p.product.toUpperCase()} — Connected · {p.plan} · {p.credits}{" "}
-              message credits
+              {p.product.toUpperCase()} — Connected · {p.plan} · {p.unlimited ? "Unlimited credits" : p.credits+" message credits"}
             </p>
           ))}
           <p>Subscriptions stay separate. Paid plans are Coming Soon.</p>
@@ -78,6 +78,7 @@ export default function SecuritySetup() {
           )}
         </>
       )}
+      <ModernSecurity/>
       {editing && (
         <form className="grid max-w-xl gap-4" onSubmit={save}>
           {[0, 1].map((i) => (

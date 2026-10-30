@@ -9,8 +9,11 @@ export async function GET(request: NextRequest) {
   const next = nextParam.startsWith("/") && !nextParam.startsWith("//") && !nextParam.includes("\\") ? nextParam : "/home";
   if (code) {
     const sb = await createSupabaseServerClient();
-    const { error } = await sb.auth.exchangeCodeForSession(code);
-    if (!error) return NextResponse.redirect(`${origin}${next}`);
+    const previous=await sb.auth.getSession();
+    const { data,error } = await sb.auth.exchangeCodeForSession(code);
+    const expected=request.cookies.get('pathd-link-user')?.value;
+    if(expected&&data?.user?.id!==expected){if(previous.data.session)await sb.auth.setSession(previous.data.session);else await sb.auth.signOut({scope:'local'});return NextResponse.redirect(`${origin}/sign-in?error=link`);}
+    if (!error) {const response=NextResponse.redirect(`${origin}${next}`);response.cookies.set('pathd-link-user','',{path:'/auth',maxAge:0});return response;}
   }
   return NextResponse.redirect(`${origin}/sign-in?error=link`);
 }

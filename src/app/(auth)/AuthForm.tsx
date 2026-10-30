@@ -1,5 +1,6 @@
 "use client";
 
+import {ModernSignIn} from "@/components/companion/ModernSecurity";
 import Captcha from "./Captcha";
 import { useActionState } from "react";
 import type { AuthState } from "./actions";
@@ -49,7 +50,7 @@ export function AuthForm({
       </section>
     );
   return (
-    <form action={formAction} className="grid gap-4" noValidate>
+    <><ModernSignIn next={next||"/home"}/><form action={formAction} className="grid gap-4" noValidate>
       {next && <input type="hidden" name="next" value={next} />}
       {demo ? (
         <p className="rounded-xl bg-lavender-wash p-3 text-sm text-plum">
@@ -104,38 +105,6 @@ export function AuthForm({
           </div>
         </>
       )}
-      {signup && !demo && (
-        <>
-          <p className="text-sm">
-            Choose two different recovery questions. Your password stays unchanged.
-            Questions alone cannot reset a password; secure email recovery is available.
-          </p>
-          {[1, 2].map((i) => (
-            <div key={i}>
-              <label htmlFor={"q" + i}>Recovery question {i}</label>
-              <input
-                id={"q" + i}
-                name={"question" + i}
-                required
-                minLength={8}
-                maxLength={160}
-                placeholder="Write your personal recovery question"
-                className={field}
-              />
-              <label htmlFor={"a" + i}>Your answer</label>
-              <input
-                id={"a" + i}
-                name={"answer" + i}
-                type="password"
-                required
-                minLength={3}
-                maxLength={200}
-                className={field}
-              />
-            </div>
-          ))}
-        </>
-      )}
       {!signup && (
         <a className="text-sm underline" href="/forgot-password">
           Forgot password?
@@ -149,6 +118,6 @@ export function AuthForm({
       <Button type="submit" variant="action" size="lg" disabled={pending}>
         {pending ? "One moment…" : demo ? "Continue in demo mode" : submitLabel}
       </Button>
-    </form>
+    </form></>
   );
 }

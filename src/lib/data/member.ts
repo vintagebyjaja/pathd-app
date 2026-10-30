@@ -38,15 +38,17 @@ export async function getCurrentMember(): Promise<CurrentMember | null> {
   const bootstrap=await sb.rpc("app_account_bootstrap");
   if(bootstrap.error)console.error(JSON.stringify({event:"pathd_profile_bootstrap_failed",code:bootstrap.error.code||"unknown"}));
 
-  const { data: p } = await sb
+  const { data: p, error: profileError } = await sb
     .from("profiles")
     .select("id, full_name, headline, current_title, city, career_goal, years_experience, highest_education, profile_skills(skills(name)), certifications(name), licenses(name), career_preferences(*)")
     .eq("id", auth.user.id)
     .maybeSingle();
-  if (!p) return null;
+  if(profileError)console.error(JSON.stringify({event:"pathd_profile_read_failed",code:profileError.code||"unknown"}));
+  // A verified Auth identity remains valid when optional profile joins are unavailable.
+  const availableProfile=p||{id:auth.user.id,full_name:auth.user.user_metadata?.display_name||auth.user.user_metadata?.full_name||""};
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const row = p as any;
+  const row = availableProfile as any;
   const prefs = row.career_preferences ?? {};
   const skills: string[] = (row.profile_skills ?? []).map((s: { skills: { name: string } }) => s.skills.name);
   const certifications: string[] = (row.certifications ?? []).map((c: { name: string }) => c.name);
