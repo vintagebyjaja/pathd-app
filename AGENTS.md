@@ -13,3 +13,7 @@ Maintain documentation/version history. The user now authorizes validated Git pu
 ## 0.1.3 review boundary
 
 The latest user requests a migration-branch preview and will approve main later. Push only migration; preserve main and all production configuration. MILA has six communication styles, not six agents. The public preview is curated and labeled, never live inference.
+
+## Main promotion approved — 2026-10-30
+
+The user explicitly approved pushing the reviewed migration update to main, separately from AELIO. Git-triggered Cloudflare builds are permitted. No manual deployment, production SQL, settings or secret changes are authorized. The owner will run the shared Supabase SQL personally.

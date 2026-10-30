@@ -1,4 +1,4 @@
-Review branch only. Main remains unchanged until user approval. [MILA preview screenshots](docs/previews/v0.1.3/README.md) · [Setup and shared SQL prerequisites](config/V0_1_3_SETUP.md).
+The reviewed update is approved for main. PATHD remains separate from AELIO; the owner handles shared SQL execution. [MILA preview screenshots](docs/previews/v0.1.3/README.md) · [Setup and shared SQL prerequisites](config/V0_1_3_SETUP.md).
 
 ![Curated MILA public preview](docs/previews/v0.1.3/mila-1440.png)
 

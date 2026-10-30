@@ -1,3 +1,9 @@
+# Main promotion approved — 2026-10-30
+
+The user approved promoting reviewed PATHD 0.1.3 to main, independently of AELIO. Reviewed application commit: 7c1308c. This promotion adds documentation only; application contents are unchanged. Existing Git-triggered Cloudflare builds are permitted, but no manual deployment, production SQL/settings/secrets were changed. The owner retrieves/applies shared SQL once from AELIO's package.
+
+---
+
 # PATHD 0.1.3 migration preview — 2026-10-30
 
 Review branch migration, based on main 55a5f26. User approval is required before a later main push. No manual deployment, production SQL, settings or secrets changed.
