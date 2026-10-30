@@ -1,4 +1,8 @@
-# PATHD 0.1.2 — independent career platform
+Review branch only. Main remains unchanged until user approval. [MILA preview screenshots](docs/previews/v0.1.3/README.md) · [Setup and shared SQL prerequisites](config/V0_1_3_SETUP.md).
+
+![Curated MILA public preview](docs/previews/v0.1.3/mila-1440.png)
+
+# PATHD 0.1.3 — independent migration preview
 
 Read PROJECT_OVERVIEW.md and PROJECT_HANDOFF.md first. Continue using the existing AELIO × PATHD Supabase project; do not create a new project. Current Cloudflare build is `npm run build:cloudflare`. Validated source is pushed only to PATHD; existing Git integration may deploy it automatically. No manual deployment is performed. See config/V0_1_2_SETUP.md. Historical Netlify/GitHub setup notes below are not authorization to deploy or push.
 

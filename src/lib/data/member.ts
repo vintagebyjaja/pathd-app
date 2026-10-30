@@ -35,6 +35,9 @@ export async function getCurrentMember(): Promise<CurrentMember | null> {
   const { data: auth } = await sb.auth.getUser();
   if (!auth.user) return null;
 
+  const bootstrap=await sb.rpc("app_account_bootstrap");
+  if(bootstrap.error)console.error(JSON.stringify({event:"pathd_profile_bootstrap_failed",code:bootstrap.error.code||"unknown"}));
+
   const { data: p } = await sb
     .from("profiles")
     .select("id, full_name, headline, current_title, city, career_goal, years_experience, highest_education, profile_skills(skills(name)), certifications(name), licenses(name), career_preferences(*)")

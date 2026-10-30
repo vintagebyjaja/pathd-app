@@ -1,55 +1,41 @@
-# PATHD 0.1.2 release manifest
+# PATHD 0.1.3 migration review manifest
 
-Independent repository: vintagebyjaja/pathd-app. Separate site: mypathd.com. Incorporates the previous local companion candidate and preserves upstream deployment fixes from 077eb72. No new SQL, no file deletions, no credentials or dependencies/build caches delivered. Existing shared platform migrations remain prerequisites.
+Repository: vintagebyjaja/pathd-app. Branch: migration. Base/main: 55a5f26. Main requires later explicit approval. Separate from AELIO; no other site repository was modified.
 
-Validation: 7 Vitest tests passed (3 matching, 4 public auth configuration); TypeScript passed. Next production and Cloudflare OpenNext builds passed using OpenNext 1.20.14 / Wrangler 4.156.0. Standalone lint cannot run noninteractively because the repository has no ESLint configuration; next lint opens its setup prompt. Live Supabase/provider/deployment checks are unverified.
+Features: owner-scoped shared profile bootstrap with successful Auth independent of private-schema access, idempotent missing-record setup, six-style/three-topic curated MILA marketing preview, saved real-chat communication preference, immutable approved business-casual MILA portrait in marketing/companion/message avatars, and narrow-header overflow correction. Original branding, navigation, careers, two-companion restriction and independent subscriptions remain intact.
 
-Streaming transport and persistence use the separately tested AELIO gateway. PATHD browser end-to-end authentication and real model output have not been verified with production credentials. Stopped partial replies are local; completed replies persist. No production database/settings/secrets were changed and no deployment command was run.
+Validation: 12 Vitest tests, standalone TypeScript, Next production build and Cloudflare OpenNext build passed. Public preview browser checks pass all eighteen curated samples at 1440/390/320px, real signup CTA, no AI calls, reduced motion and no overflow. Standalone next lint lacks project configuration and opens setup; not claimed as passed. Live Supabase/users/model output/runtime bindings remain unverified. No production settings/SQL/secrets or manual deployment changed.
 
-Changed or added project files relative to upstream main:
+Shared SQL 05/06 is supplied separately in the AELIO migration branch/package and must be reviewed/applied once to the existing shared project. No second project/database or duplicate profiles. No new PATHD_SESSION_SECRET is required. No file deletions. Rebuild with npm run build:cloudflare after owner approval; do not run deployment commands automatically.
 
-- `.env.example`
-- `.gitignore`
+## Changed or added files
+
 - `AGENTS.md`
 - `CHANGELOG.md`
 - `PROJECT_HANDOFF.md`
 - `PROJECT_OVERVIEW.md`
 - `README.md`
 - `RELEASE_MANIFEST.md`
-- `config/V0_1_2_SETUP.md`
+- `config/V0_1_3_SETUP.md`
+- `docs/previews/v0.1.3/README.md`
+- `docs/previews/v0.1.3/mila-1440.png`
+- `docs/previews/v0.1.3/mila-320.png`
+- `docs/previews/v0.1.3/mila-390.png`
 - `package-lock.json`
 - `package.json`
+- `public/companions/mila.webp`
 - `scripts/check-auth-env.mjs`
-- `src/app/(app)/companion/page.tsx`
-- `src/app/(app)/jobs/[id]/page.tsx`
-- `src/app/(app)/layout.tsx`
-- `src/app/(app)/settings/security/page.tsx`
-- `src/app/(auth)/AuthForm.tsx`
-- `src/app/(auth)/Captcha.tsx`
+- `scripts/checks/browser_mila.py`
 - `src/app/(auth)/actions.ts`
-- `src/app/(auth)/forgot-password/page.tsx`
-- `src/app/(auth)/reset-password/page.tsx`
 - `src/app/(marketing)/page.tsx`
-- `src/app/api/companion/[...path]/route.ts`
-- `src/app/auth/callback/route.ts`
 - `src/app/globals.css`
-- `src/app/layout.tsx`
-- `src/components/companion/AskMila.tsx`
-- `src/components/companion/CareerTools.tsx`
 - `src/components/companion/Companions.tsx`
-- `src/components/companion/ImportCareer.tsx`
-- `src/components/companion/Markdown.tsx`
-- `src/components/companion/RecoveryForm.tsx`
+- `src/components/companion/MilaAvatar.tsx`
 - `src/components/companion/SecurityGate.tsx`
-- `src/components/companion/SecuritySetup.tsx`
-- `src/components/layout/AppNav.tsx`
-- `src/components/marketing/sections.tsx`
-- `src/lib/companion/server.ts`
+- `src/components/marketing/MilaPreview.tsx`
+- `src/components/marketing/SiteHeader.tsx`
+- `src/lib/companion/auth-repair.test.ts`
+- `src/lib/companion/mila-preview.test.ts`
+- `src/lib/companion/mila-preview.ts`
 - `src/lib/data/member.ts`
-- `src/lib/env.ts`
-- `src/lib/supabase/browser.ts`
-- `src/lib/supabase/config.test.ts`
 - `src/lib/supabase/config.ts`
-- `src/lib/supabase/server.ts`
-- `src/middleware.ts`
-- `wrangler.jsonc`

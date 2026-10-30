@@ -90,7 +90,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-line/70 bg-cream/95 backdrop-blur" style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}>
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-3 sm:gap-4 sm:px-5">
         <Link href="/" aria-label="PATHD home"><PathdWordmark /></Link>
         <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
           {MENUS.map((m) => (
@@ -98,10 +98,10 @@ export function SiteHeader() {
           ))}
           <Link href="/pricing" className="rounded-full px-3 py-2 text-[15px] font-medium text-plum hover:bg-plum/5">Pricing</Link>
         </nav>
-        <div className="flex items-center gap-2">
-          <LinkButton href="/sign-in" variant="ghost" size="sm" className="hidden sm:inline-flex">Sign in</LinkButton>
-          <LinkButton href="/sign-up" variant="action" size="sm">Start your path</LinkButton>
-          <button type="button" aria-expanded={mobile} aria-controls="mobile-menu" aria-label={mobile ? "Close menu" : "Open menu"} onClick={() => setMobile(!mobile)} className="grid h-10 w-10 place-items-center rounded-full border border-line bg-paper text-plum lg:hidden">
+        <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+          <span className="hidden sm:inline-flex"><LinkButton href="/sign-in" variant="ghost" size="sm">Sign in</LinkButton></span>
+          <LinkButton href="/sign-up" variant="action" size="sm" className="min-h-11 px-3 sm:px-4" aria-label="Start your path"><span className="hidden min-[360px]:inline">Start your path</span><span className="min-[360px]:hidden">Start</span></LinkButton>
+          <button type="button" aria-expanded={mobile} aria-controls="mobile-menu" aria-label={mobile ? "Close menu" : "Open menu"} onClick={() => setMobile(!mobile)} className="grid h-10 w-10 place-items-center rounded-full border border-line bg-paper text-plum shrink-0 lg:hidden">
             <Icon name={mobile ? "close" : "menu"} />
           </button>
         </div>

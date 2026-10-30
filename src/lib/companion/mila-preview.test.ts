@@ -1,0 +1,2 @@
+import {expect,it} from 'vitest';import {MILA_STYLES,MILA_TOPICS,MILA_EXAMPLES} from './mila-preview';
+it('offers eighteen distinct curated examples across six styles and three topics',()=>{expect(MILA_STYLES).toHaveLength(6);expect(Object.keys(MILA_TOPICS)).toHaveLength(3);const responses:string[]=[];for(const topic of Object.keys(MILA_TOPICS) as Array<keyof typeof MILA_TOPICS>)for(const style of MILA_STYLES){const reply=MILA_EXAMPLES[topic][style];expect(reply.length).toBeGreaterThan(60);responses.push(reply);}expect(new Set(responses).size).toBe(18);});

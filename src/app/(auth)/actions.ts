@@ -131,18 +131,14 @@ export async function signIn(_: AuthState, form: FormData): Promise<AuthState> {
     return { error: authMessage(error) };
   const verified = await sb.auth.getUser();
   if (verified.error || !verified.data.user) return {error: "Your session could not be verified. Please sign in again."};
-  const { data: shared, error: profileError } = await sb
-    .schema("core")
-    .from("profiles")
-    .select("recovery_enrolled_at")
-    .eq("user_id", verified.data.user.id)
-    .maybeSingle();
-  if (profileError)
-    return {
-      error:
-        "Sign-in succeeded, but the shared profile service is unavailable. Please retry.",
-    };
-  redirect(shared?.recovery_enrolled_at ? next : "/settings/security");
+  const {data:shared,error:profileError}=await sb.rpc("app_account_bootstrap");
+  if(profileError){
+    console.error(JSON.stringify({event:"pathd_profile_bootstrap_failed",code:profileError.code||"unknown"}));
+    // The verified Supabase session is valid. Keep the real dashboard accessible;
+    // security-sensitive recovery actions still require their own authorization.
+    redirect(next);
+  }
+  redirect(shared?.user?.recovery_enrolled ? next : "/settings/security");
 }
 
 export async function signOut() {

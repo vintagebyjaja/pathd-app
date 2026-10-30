@@ -20,19 +20,15 @@ export default function SecurityGate({
         data: { user },
       } = await sb.auth.getUser();
       if (!user) return;
-      const { data, error } = await sb
-        .schema("core")
-        .from("profiles")
-        .select("recovery_enrolled_at")
-        .eq("user_id", user.id)
-        .maybeSingle();
+      const { data, error } = await sb.rpc("app_account_bootstrap");
       if (error) {
         setError(
           "Account security status is temporarily unavailable. Your dashboard remains accessible.",
         );
         return;
       }
-      setNeeds(!data?.recovery_enrolled_at);
+      setError("");
+      setNeeds(!data?.user?.recovery_enrolled);
     };
     check();
     addEventListener("shared-recovery-enrolled", check);

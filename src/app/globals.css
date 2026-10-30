@@ -80,3 +80,9 @@
 .markdown-content pre {max-width:100%;overflow-x:auto;padding:1rem;border-radius:.75rem;background:#0000000d;white-space:pre;font-size:.8rem}
 .markdown-content code {font-family:ui-monospace,monospace}
 .markdown-content .markdown-heading {font-weight:600;font-size:1.1em}
+
+/* The public MILA sample is deliberately contained inside the existing marketing section. */
+.mila-preview{overflow:hidden}.mila-styles{max-width:100%;scrollbar-width:thin;scroll-snap-type:x proximity}.mila-styles button{min-height:44px;scroll-snap-align:start}.mila-demo-messages{min-height:235px}.mila-example{animation:mila-reveal .22s ease-out}.mila-typing span{animation:mila-type .9s ease-in-out infinite}.mila-typing span:nth-child(2){animation-delay:.12s}.mila-typing span:nth-child(3){animation-delay:.24s}
+@keyframes mila-reveal{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes mila-type{50%{opacity:.35}}
+@media(prefers-reduced-motion:reduce){.mila-example,.mila-typing span{animation:none}}

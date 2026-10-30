@@ -1,4 +1,6 @@
 "use client";
+import {MilaAvatar} from "./MilaAvatar";
+import {MILA_STYLES} from "@/lib/companion/mila-preview";
 import ImportCareer from "./ImportCareer";
 import CareerTools from "./CareerTools";
 import {Markdown} from "./Markdown";
@@ -17,6 +19,7 @@ export default function Companions() {
   const controllers=useRef<Record<string,AbortController>>({}),attempts=useRef<Record<string,any>>({}),selection=useRef(0),follow=useRef(true),scrollBox=useRef<HTMLDivElement|null>(null);
   const [retryable,setRetryable]=useState<Record<string,boolean>>({}),[waiting,setWaiting]=useState<Record<string,boolean>>({});
   useEffect(()=>{const element=scrollBox.current;if(element&&follow.current)element.scrollTop=element.scrollHeight;});
+  const [style,setStyle]=useState("homegirl"),[savingStyle,setSavingStyle]=useState(false);
   const [agents, setAgents] = useState<any[]>([]),
     [threads, setThreads] = useState<any[]>([]),
     [cur, setCur] = useState<any>(null),
@@ -31,6 +34,7 @@ export default function Companions() {
   useEffect(() => {
     Promise.all([api("/agents"), api("/conversations"), api("/account")])
       .then(([a, c, p]) => {
+        setStyle(p.preferences.mila_style||"homegirl");
         setAgents(a.agents);
         setThreads(c.conversations);
         setCareer(p.preferences.career_consent);
@@ -115,7 +119,7 @@ export default function Companions() {
             }
             onClick={() => select(a)}
           >
-            <b>{a.name}</b>
+            {a.kind==='mila'&&<MilaAvatar/>}<b>{a.name}</b>
             <span className="block text-sm">
               {a.kind === "mila"
                 ? "Career & life companion"
@@ -129,6 +133,7 @@ export default function Companions() {
           {error}
         </p>
       )}
+      {agents.find(a=>a.id===cur?.participants[0])?.kind==='mila'&&<label className={box}>MILA’s communication style<select aria-label="MILA communication style" disabled={savingStyle} value={style} onChange={async event=>{const next=event.target.value;setSavingStyle(true);try{await api('/account','PATCH',{mila_style:next});setStyle(next);}catch(e:any){setError(e.message);}finally{setSavingStyle(false);}}} className="ml-3 rounded-xl border border-line bg-paper px-3 py-2 text-plum">{MILA_STYLES.map(item=><option key={item} value={item.toLowerCase()}>{item}</option>)}</select><span className="block text-sm">Same MILA, same history. Choose how you like to talk.</span></label>}
       <section className={box}>
         <h2 className="text-2xl font-semibold">
           {cur?.title || "Choose your companion"}
@@ -166,7 +171,7 @@ export default function Companions() {
                   : "bg-lavender-wash text-plum-deep")
               }
             >
-              <b className="block text-xs">{m.speaker || m.role}</b>
+              <b className="flex items-center gap-2 text-xs">{m.role==='assistant'&&(m.speaker==='MILA'||(!m.speaker&&agents.find(a=>a.id===cur?.participants[0])?.kind==='mila'))&&<MilaAvatar size={24}/>} {m.speaker || m.role}</b>
               <Markdown text={m.content}/>
             </article>
           ))}

@@ -9,3 +9,7 @@ PATHD offers exactly two companions: AELIO (adaptive Original Main Pal) and MILA
 Keys prefixed NEXT_PUBLIC_ must be client-safe. Service-role credentials remain server-only. Recovery questions never authorize resets without a strong credential. Keep signup CAPTCHA/rate-limit settings aligned with the shared Auth project; do not change project-wide email-confirmation settings automatically.
 
 Maintain documentation/version history. The user now authorizes validated Git pushes to this separate repository; no manual deployment or production configuration changes. Test/build locally and report real-service blockers honestly. No raw Auth tokens in URLs.
+
+## 0.1.3 review boundary
+
+The latest user requests a migration-branch preview and will approve main later. Push only migration; preserve main and all production configuration. MILA has six communication styles, not six agents. The public preview is curated and labeled, never live inference.

@@ -1,3 +1,15 @@
+# PATHD 0.1.3 migration preview — 2026-10-30
+
+Review branch migration, based on main 55a5f26. User approval is required before a later main push. No manual deployment, production SQL, settings or secrets changed.
+
+Login now uses a public owner-only bootstrap RPC instead of direct core schema access. Auth success is separate from profile service availability; missing rows are initialized without overwrites. Existing sessions/users/subscriptions remain distinct from AELIO. PATHD retains only AELIO and MILA, even though the shared AELIO database now supports eight official companions. Shared SQL 05/06 must be reviewed/applied once from the AELIO package.
+
+MEET MILA stays inside the original purple section: six style selectors, three topics and eighteen curated examples, labeled demonstration with no AI calls. An authenticated visitor’s CTA goes to MILA; guests go to signup. Real users save MILA style to shared preferences; the AELIO gateway applies it without changing identity/history. A narrow 320px header spacing fix prevents overflow while preserving navigation and branding.
+
+See config/V0_1_3_SETUP.md and RELEASE_MANIFEST.md. Real production Auth/model responses and runtime configuration were unavailable locally, so do not claim live repair or deployment verification.
+
+---
+
 # PATHD 0.1.2 handoff — 2026-10-30
 
 Repository: vintagebyjaja/pathd-app, independent of AELIO. This release incorporates the earlier local companion/recovery candidate and preserves upstream main 077eb72 deployment fixes. No PATHD source is delivered inside AELIO.
@@ -9,3 +21,5 @@ OpenNext uses the existing pathd-app Worker/self-reference and its separate cach
 Real Supabase login, provider inference, callbacks and Cloudflare deployment remain unverified in this environment: production credentials are not available and live site requests are blocked by network policy. No production SQL, secrets or settings were changed. Existing shared platform migrations remain prerequisites; no new SQL is introduced here. See config/V0_1_2_SETUP.md and RELEASE_MANIFEST.md for checks and setup.
 
 Stopped partial replies are local and may disappear on reload; only completed turns persist. Advanced external account linking, job monitoring, passkeys and notification delivery are not implemented. Do not label them operational.
+
+Official portrait update: the approved business-casual MILA source is optimized as the exact same WebP bytes used in AELIO. MilaAvatar has no user-editable URL or upload setting. Marketing, companion selection and message avatars use that protected asset.
