@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Figtree, Marcellus } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const marcellus = Marcellus({ subsets: ["latin"], weight: "400", variable: "--font-marcellus", display: "swap" });
-const figtree = Figtree({ subsets: ["latin"], variable: "--font-figtree", display: "swap" });
+const marcellus = localFont({ src:"../../node_modules/@fontsource/marcellus/files/marcellus-latin-400-normal.woff2", weight: "400", variable: "--font-marcellus", display: "swap" });
+const figtree = localFont({ src:"../../node_modules/@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2", variable: "--font-figtree", display: "swap" });
 
 export const metadata: Metadata = {
   title: { default: "PATHD — Find your path", template: "%s · PATHD" },

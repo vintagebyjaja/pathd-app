@@ -77,6 +77,7 @@ export function AppNav() {
             </ul>
           </nav>
           <div className="ml-auto flex items-center gap-1">
+            <Link href="/companion?agent=mila" className="rounded-full px-3 py-2 text-sm font-semibold text-plum">Ask MILA</Link>
             <Link href="/radar" className="rounded-full px-3 py-2 text-sm font-semibold text-plum hover:bg-plum/5">Radar</Link>
             <Link href="/profile" aria-label="Your profile" className="grid h-9 w-9 place-items-center rounded-full bg-lavender text-plum-deep">
               <NavIcon icon="profile" className="h-4.5 w-4.5" />

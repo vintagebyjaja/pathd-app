@@ -1,3 +1,4 @@
+import SecurityGate from "@/components/companion/SecurityGate";
 import { AppNav } from "@/components/layout/AppNav";
 import { DemoBanner } from "@/components/ui/Button";
 import { isDemoMode } from "@/lib/env";
@@ -10,7 +11,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </a>
       {isDemoMode && <DemoBanner />}
       <AppNav />
-      <main id="main" className="mx-auto max-w-6xl px-5 pb-28 pt-8 lg:pb-16">{children}</main>
+      <main id="main" className="mx-auto max-w-6xl px-5 pb-28 pt-8 lg:pb-16"><SecurityGate>{children}</SecurityGate></main>
     </>
   );
 }

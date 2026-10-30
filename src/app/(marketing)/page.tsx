@@ -41,6 +41,7 @@ export default function LandingPage() {
           <HeroRoutes />
         </section>
 
+        <section className="mx-auto max-w-6xl px-5 py-10"><div className="rounded-3xl bg-plum p-8 text-cream"><p className="text-sm uppercase tracking-widest">Meet MILA</p><h2 className="mt-3 font-display text-4xl">My Inspiration, Life &amp; Ambition</h2><p className="mt-4 max-w-xl text-lg">Your career matters. So does your life outside of it. Meet your supportive career mentor and accountability companion, powered by the AELIO Brain.</p><div className="mt-6"><LinkButton href="/companion?agent=mila" variant="outline">Ask MILA</LinkButton></div></div></section>
         <div className="mx-auto mb-4 max-w-6xl px-5">
           <Link href="/explore/perks" className="flex items-center justify-between gap-3 rounded-2xl bg-plum px-5 py-3 text-cream">
             <span><span className="font-semibold">Milestone Perks</span><span className="text-cream/80"> for interview day, new jobs, graduations and more</span></span>

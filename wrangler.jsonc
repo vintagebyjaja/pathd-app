@@ -1,0 +1,8 @@
+{
+  "name": "pathd-app",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-29",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {"directory": ".open-next/assets", "binding": "ASSETS"},
+  "services": [{"binding": "AELIO_PLATFORM", "service": "aelio-live"}]
+}

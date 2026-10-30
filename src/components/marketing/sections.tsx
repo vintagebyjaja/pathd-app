@@ -56,7 +56,7 @@ function PlanCard({ plan, featured }: { plan: Plan; featured?: boolean }) {
   const pr = price(plan);
   return (
     <li className={cn("flex flex-col rounded-[var(--radius-card)] border p-6", featured ? "border-plum bg-plum text-cream" : "border-line bg-paper text-plum-deep")}>
-      <h3 className="font-display text-2xl">{plan.name}</h3>
+      <h3 className="font-display text-2xl">{plan.name}</h3>{plan.id!=="free"&&<p className="mt-2 text-sm font-semibold">Coming Soon · Proposed pricing</p>}
       <p className={cn("mt-4 font-display text-4xl", featured ? "text-cream" : "text-plum")}>{pr.main}</p>
       <p className={cn("text-sm", featured ? "text-cream/75" : "text-plum-soft")}>{pr.sub}</p>
       <p className={cn("mt-4 text-sm leading-relaxed", featured ? "text-cream/85" : "text-plum-soft")}>{plan.summary}</p>

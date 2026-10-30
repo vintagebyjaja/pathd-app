@@ -1,17 +1,20 @@
+import {getPublicSupabaseConfig} from "./lib/supabase/config";
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 
-const PROTECTED = ["/home", "/profile", "/onboarding", "/applications", "/settings"];
+const PROTECTED = ["/home", "/profile", "/onboarding", "/applications", "/settings", "/companion"];
 
 /**
  * Refreshes the Supabase session cookie and guards member-only routes.
  * In demo mode (no Supabase env) everything is open and shows demo data.
  */
 export async function middleware(request: NextRequest) {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const {url,key,configured}=getPublicSupabaseConfig();
   const isStaffPath = request.nextUrl.pathname === "/admin" || request.nextUrl.pathname.startsWith("/admin/");
-  if (!url || !key) return isStaffPath ? withNoIndex(NextResponse.next()) : NextResponse.next();
+  if(!configured){
+    if(PROTECTED.some(path=>request.nextUrl.pathname===path||request.nextUrl.pathname.startsWith(path+'/'))){const to=request.nextUrl.clone();to.pathname='/sign-in';to.searchParams.set('configuration','missing');return NextResponse.redirect(to);}
+    return isStaffPath?withNoIndex(NextResponse.next()):NextResponse.next();
+  }
 
   let response = NextResponse.next({ request });
   const supabase = createServerClient(url, key, {

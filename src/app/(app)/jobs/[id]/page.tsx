@@ -1,3 +1,4 @@
+import AskMila from "@/components/companion/AskMila";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -38,7 +39,7 @@ export default async function JobPage({ params }: { params: Promise<{ id: string
             <p className="mt-1 text-sm text-plum-soft">How we estimated this: {job.salary.estimateBasis}. The employer did not list pay.</p>
           )}
         </div>
-        <h1 className="mt-6 font-display text-4xl leading-tight text-plum">{job.title}</h1>
+        <AskMila title={job.title} context={{job_id:job.id,company:job.company.name,skills:job.requiredSkills,is_demo:job.isDemo}}/><h1 className="mt-6 font-display text-4xl leading-tight text-plum">{job.title}</h1>
         <p className="mt-2 flex flex-wrap items-center gap-2 text-plum-deep">
           {job.company.name} {job.isDemo && <DemoBadge />}
         </p>

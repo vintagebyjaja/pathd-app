@@ -1,6 +1,6 @@
 import "server-only";
 import type { EducationLevel, MatchProfile, WorkType } from "@/types/domain";
-import { isSupabaseConfigured } from "@/lib/env";
+import { isSupabaseConfigured, isDemoMode } from "@/lib/env";
 import { DEMO_MATCH_PROFILE, DEMO_MEMBER } from "./demo/profile";
 
 export interface CurrentMember {
@@ -20,6 +20,7 @@ export interface CurrentMember {
 
 export async function getCurrentMember(): Promise<CurrentMember | null> {
   if (!isSupabaseConfigured) {
+    if(!isDemoMode)return null;
     return {
       ...DEMO_MEMBER,
       skills: DEMO_MATCH_PROFILE.skills,

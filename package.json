@@ -1,17 +1,20 @@
 {
   "name": "pathd",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/check-auth-env.mjs && next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "build:cloudflare": "opennextjs-cloudflare build"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.60.0",
+    "@fontsource-variable/figtree": "5.2.8",
+    "@fontsource/marcellus": "5.2.6",
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.50.0",
     "mammoth": "^1.9.0",
@@ -20,9 +23,11 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "server-only": "^0.0.1",
+    "sharp": "0.34.3",
     "zod": "^3.25.0"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "1.6.5",
     "@tailwindcss/postcss": "^4.1.0",
     "@types/node": "^22.0.0",
     "@types/pdf-parse": "^1.1.4",
@@ -32,7 +37,8 @@
     "eslint-config-next": "^15.4.0",
     "tailwindcss": "^4.1.0",
     "typescript": "^5.8.0",
-    "vitest": "^3.2.0"
+    "vitest": "^3.2.0",
+    "wrangler": "4.45.0"
   },
   "engines": {
     "node": ">=20"

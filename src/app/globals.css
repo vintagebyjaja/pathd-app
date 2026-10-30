@@ -73,3 +73,10 @@
   stroke-dasharray: var(--route-length, 1400);
   animation: draw-route 1.8s cubic-bezier(0.65, 0, 0.35, 1) 0.2s both;
 }
+/* Safe companion Markdown; existing PATHD colors/layout are preserved. */
+.markdown-content {min-width:0;overflow-wrap:anywhere}
+.markdown-content p {white-space:pre-wrap;margin:.4rem 0}
+.markdown-content ul,.markdown-content ol {padding-left:1.4rem;line-height:1.6}
+.markdown-content pre {max-width:100%;overflow-x:auto;padding:1rem;border-radius:.75rem;background:#0000000d;white-space:pre;font-size:.8rem}
+.markdown-content code {font-family:ui-monospace,monospace}
+.markdown-content .markdown-heading {font-weight:600;font-size:1.1em}

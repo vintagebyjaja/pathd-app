@@ -1,6 +1,8 @@
+import {getPublicSupabaseConfig} from "./config";
 import { createBrowserClient } from "@supabase/ssr";
 
 /** Browser client. Uses only the public anon key; row-level security does the rest. */
 export function createSupabaseBrowserClient() {
-  return createBrowserClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+  const config=getPublicSupabaseConfig();if(!config.configured)throw Error("Supabase sign-in needs public configuration. Please contact the site owner.");
+  return createBrowserClient(config.url,config.key);
 }

@@ -1,3 +1,9 @@
+# Current local candidate: PATHD 0.1.1 / AELIO_v1.0.1
+
+Read PROJECT_OVERVIEW.md and PROJECT_HANDOFF.md first. Continue using the existing AELIO × PATHD Supabase project; do not create a new project. Current Cloudflare build is `npm run build:cloudflare`; the owner handles any later deployment. Historical Netlify/GitHub setup notes below are not authorization to deploy or push.
+
+---
+
 # PATHD — Find your path
 
 Career platform: jobs with pay up front, explainable matching, career routes, and community.

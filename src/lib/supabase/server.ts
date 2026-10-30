@@ -1,11 +1,13 @@
 import "server-only";
+import {getPublicSupabaseConfig} from "./config";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { createClient } from "@supabase/supabase-js";
 
 export async function createSupabaseServerClient() {
   const cookieStore = await cookies();
-  return createServerClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
+  const config=getPublicSupabaseConfig();if(!config.configured)throw Error("Supabase sign-in needs public runtime/build configuration.");
+  return createServerClient(config.url, config.key, {
     cookies: {
       getAll: () => cookieStore.getAll(),
       setAll: (toSet: { name: string; value: string; options: CookieOptions }[]) => {
