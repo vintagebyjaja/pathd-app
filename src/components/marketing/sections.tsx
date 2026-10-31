@@ -26,24 +26,24 @@ export const PLANS: Plan[] = [
     features: ["Join Circles and study groups", "Connect and message inside Circles", "Start and host study sessions", "Full Career Routes and skill gaps", "Advanced filters and swiping", "Enhanced Radar and saved searches", "Application tracking"],
   },
   {
-    id: "pro", name: "PATHD Pro", audience: "people", monthly: 11.99, yearly: 99,
+    id: "pro", name: "PATHD Pro", audience: "people", monthly: 16, yearly: 99,
     summary: "Deeper career intelligence and licensure tracking.",
-    features: ["Everything in PATHD+", "Multiple resume profiles", "Advanced matching and Career GPS", "Detailed salary comparisons", "Licensure pathway tracking", "Priority Radar"],
+    features: ["MILA and AELIO companions included", "Everything in PATHD+", "Multiple resume profiles", "Advanced matching and Career GPS", "Detailed salary comparisons", "Licensure pathway tracking", "Priority Radar"],
   },
   {
     id: "local", name: "PATHD Local", audience: "business", monthly: 29, yearly: null,
     summary: "For coffee shops, gyms, studios and neighborhood businesses.",
-    features: ["Enhanced business page", "Offers and events", "Map visibility tools", "Circle hosting", "Analytics"],
+    features: ["MILA and AELIO companions included", "Enhanced business page", "Offers and events", "Map visibility tools", "Circle hosting", "Analytics"],
   },
   {
     id: "employer", name: "PATHD Employer", audience: "business", monthly: 79, yearly: null,
     summary: "Your first basic job post is free.",
-    features: ["Multiple active jobs", "Applicant dashboard", "Candidate matching", "Company page and messaging", "Hiring analytics"],
+    features: ["MILA and AELIO companions included", "Multiple active jobs", "Applicant dashboard", "Candidate matching", "Company page and messaging", "Hiring analytics"],
   },
   {
     id: "recruiter", name: "PATHD Recruiter", audience: "business", monthly: 199, yearly: null,
     summary: "For agency and independent recruiters.",
-    features: ["Candidate search and filters", "Outreach and talent pools", "Multiple clients", "Recruiting analytics"],
+    features: ["MILA and AELIO companions included", "Candidate search and filters", "Outreach and talent pools", "Multiple clients", "Recruiting analytics"],
   },
 ];
 
@@ -56,7 +56,7 @@ function PlanCard({ plan, featured }: { plan: Plan; featured?: boolean }) {
   const pr = price(plan);
   return (
     <li className={cn("flex flex-col rounded-[var(--radius-card)] border p-6", featured ? "border-plum bg-plum text-cream" : "border-line bg-paper text-plum-deep")}>
-      <h3 className="font-display text-2xl">{plan.name}</h3>{plan.id!=="free"&&<p className="mt-2 text-sm font-semibold">Coming Soon · Proposed pricing</p>}
+      <h3 className="font-display text-2xl">{plan.name}</h3>{plan.id!=="free"&&<p className="mt-2 text-sm font-semibold">Paid enrollment coming soon</p>}
       <p className={cn("mt-4 font-display text-4xl", featured ? "text-cream" : "text-plum")}>{pr.main}</p>
       <p className={cn("text-sm", featured ? "text-cream/75" : "text-plum-soft")}>{pr.sub}</p>
       <p className={cn("mt-4 text-sm leading-relaxed", featured ? "text-cream/85" : "text-plum-soft")}>{plan.summary}</p>

@@ -31,3 +31,8 @@ The latest owner instruction returns to migration-only review. Do not push this 
 
 
 Latest priority is shared backend outage investigation, not visual work. Keep migration-only. AELIO SQL10 fixes newly saved turn ordering; no production SQL is authorized. Live inference/runtime-log access is unavailable, so local synthetic pipeline tests do not establish production recovery.
+
+
+## Current0.1.6 remaining-handoff review — 2026-10-30
+
+Current user authorizes migration-branch pushes and visual previews, never main until approval. Monthly Pro is$16; preserve annual prices and every other monthly price. Active paid AELIO may fund AELIO/MILA in PATHD without upgrading PATHD community/career plans; otherwise eligible paid PATHD funds companions. Free core applications, browsing, resumes, maps and discovery stay free. The server gateway and SQL13 enforce access and one funding source. Shared allowance policy is now explicitly60% with a $10 minimum for eligible paid AI plans. No production SQL/settings/secrets changes are authorized. Shared migration13 is owner-applied only in AELIO, never duplicated here. See docs/releases/PATHD_v0.1.6_REVIEW.md; preserve middleware Auth. The local static fixture harness is not an application route or proof of actual paid access.

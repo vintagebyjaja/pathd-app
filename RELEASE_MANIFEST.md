@@ -1,3 +1,9 @@
+# Review manifest — PATHD0.1.6 (2026-10-30)
+
+The current user authorized remaining pricing/access changes and migration-only pushes with visual review. Pro is$16/month; annual prices and all other monthly prices remain unchanged. Paid AELIO unlocks AELIO/MILA on PATHD using its own allowance, with PATHD+ and Pro career permissions remaining independent. Paid enrollment is not activated. Review docs/releases/PATHD_v0.1.6_REVIEW.md and docs/previews/v0.1.6/README.md. Shared SQL13 lives only in AELIO and requires manual owner application after the reported11/12. Main and production settings remain unchanged. Historical records follow.
+
+---
+
 # PATHD 0.1.3 migration review manifest
 
 Repository: vintagebyjaja/pathd-app. Branch: migration. Base/main: 55a5f26. Main requires later explicit approval. Separate from AELIO; no other site repository was modified.

@@ -1,3 +1,9 @@
+# Version history — PATHD0.1.6 (2026-10-30)
+
+The current user authorized remaining pricing/access changes and migration-only pushes with visual review. Pro is$16/month; annual prices and all other monthly prices remain unchanged. Paid AELIO unlocks AELIO/MILA on PATHD using its own allowance, with PATHD+ and Pro career permissions remaining independent. Paid enrollment is not activated. Review docs/releases/PATHD_v0.1.6_REVIEW.md and docs/previews/v0.1.6/README.md. Shared SQL13 lives only in AELIO and requires manual owner application after the reported11/12. Main and production settings remain unchanged. Historical records follow.
+
+---
+
 # PATHD changes
 
 ## 0.1.3 — 2026-10-30 — migration preview

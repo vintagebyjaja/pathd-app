@@ -1,0 +1,11 @@
+# PATHD0.1.6 migration review — 2026-10-30
+
+User authorized the remaining handoff work and another migration visual preview, preserving main until approval. Pro monthly price is now$16; Plus$5.99, Local$29, Employer$79 and Recruiter$199 are unchanged. Existing annual prices (Plus$49/Pro$99) are unchanged. Paid enrollment remains unavailable; no checkout or charge is activated.
+
+New companion-access panel shows verified active subscriptions, independent PATHD+/Pro permissions, funding source, remaining AI allowance and billing period. Active paid AELIO funds companions in PATHD first without purchasing PATHD+ or Pro. Otherwise an eligible paid PATHD plan funds companions. The Next API validates access using the authenticated shared gateway, which enforces the same rule and monetary reservations. Expired accounts retain their histories and files. Existing free applications, browsing, resume creation, maps and discovery remain unchanged. Protected route authentication is not relaxed.
+
+The authoritative new SQL is in AELIO migration13, not duplicated in PATHD. Owner reports applying11/12; review/apply only13 manually and confirm before dependent release. Provider/subscription configuration, verified Stripe price/UUID bindings and the60%/$10 minimum policy are documented in AELIO config/V1_0_9_ROUTER.md. No production SQL/settings/secrets/manual deployment or main push occurred. No AELIO price IDs or tier prices were guessed.
+
+Validation:18 Vitest tests passed; type check and Next production build passed. Actual local pricing rendered at390/1440 with$16 monthly/$99 annual verified. Real source Companions/SubscriptionAccess components rendered at390/1440 in a separate static fixture harness with clearly labeled sample data; no real account entitlement/balance or production Auth was verified. The normal protected companion route still requires authentication. Hosted Stripe/provider/Auth/R2 behavior and actual subscription mappings remain unverified. Complex multi-line/prorated/unsupported-currency invoices require owner review rather than guessed grants. See the AELIO1.0.9 validation for shared ledger/router tests.
+
+Visuals: docs/previews/v0.1.6/README.md. Source delta and checksums are in deliveries/PATHD_v0.1.6_001. Main approval and production activation remain separate steps.

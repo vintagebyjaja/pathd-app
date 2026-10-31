@@ -1,4 +1,6 @@
 "use client";
+import SubscriptionAccess from "./SubscriptionAccess";
+import type {CompanionAccess} from "@/lib/companion/entitlements";
 import {MilaAvatar} from "./MilaAvatar";
 import {MILA_STYLES} from "@/lib/companion/mila-preview";
 import ImportCareer from "./ImportCareer";
@@ -16,6 +18,7 @@ async function api(path: string, method = "GET", data?: unknown) {
   return d;
 }
 export default function Companions() {
+  const [access,setAccess]=useState<CompanionAccess|null>(null);
   const controllers=useRef<Record<string,AbortController>>({}),attempts=useRef<Record<string,any>>({}),selection=useRef(0),follow=useRef(true),scrollBox=useRef<HTMLDivElement|null>(null);
   const [retryable,setRetryable]=useState<Record<string,boolean>>({}),[waiting,setWaiting]=useState<Record<string,boolean>>({});
   useEffect(()=>{const element=scrollBox.current;if(element&&follow.current)element.scrollTop=element.scrollHeight;});
@@ -76,7 +79,7 @@ export default function Companions() {
     }
   }
   async function send(e?: React.FormEvent,retry?:any) {
-    e?.preventDefault();if(!cur||busy[cur.id]||!consent)return;
+    e?.preventDefault();if(access?.configured&&!access.companion_access){setError('Your existing draft is saved. An eligible AELIO or PATHD plan is required for companions.');return;}if(!cur||busy[cur.id]||!consent)return;
     const id=cur.id,content=retry?.content??draft[id]??'';if(!content.trim())return;
     const previous=attempts.current[id],retrying=!!retry||!!retryable[id]&&previous?.content===content;
     let requestId=retry?.request_id||(retrying?previous?.request_id:undefined)||crypto.randomUUID();
@@ -100,6 +103,7 @@ export default function Companions() {
   async function stop(){const id=cur?.id;if(!id)return;controllers.current[id]?.abort();try{await api('/conversations/'+id+'/cancel','POST',{request_id:attempts.current[id]?.request_id});}catch{setError('Stopped locally. Server cancellation could not be confirmed; please wait before retrying.');}}
   return (
     <div className="grid gap-5">
+      <SubscriptionAccess onAccess={setAccess}/>
       <header>
         <p className="text-sm font-semibold uppercase tracking-widest text-plum-soft">
           Your companions

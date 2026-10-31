@@ -84,7 +84,7 @@ async function route(
     }
 
     if (
-      !/^\/(account(?:\/(export|health))?|recovery\/(enroll|reset)|agents|conversations(?:\/[a-f0-9-]+(?:\/(messages|respond|cancel))?)?|career\/(records|reminders|notifications)(?:\/[a-f0-9-]+)?)$/.test(
+      !/^\/(billing\/access|account(?:\/(export|health))?|recovery\/(enroll|reset)|agents|conversations(?:\/[a-f0-9-]+(?:\/(messages|respond|cancel))?)?|career\/(records|reminders|notifications)(?:\/[a-f0-9-]+)?)$/.test(
         path,
       )
     )
@@ -105,6 +105,12 @@ async function route(
         )
       )
         return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    if(path.endsWith('/respond')&&req.method==='POST'){
+      const accessResponse=await companionFetch('/billing/access',{},token);
+      if(!accessResponse.ok)return accessResponse;
+      const access=await accessResponse.json();
+      if(access.configured&&!access.companion_access)return NextResponse.json({error:'An active paid AELIO subscription or eligible PATHD plan includes MILA and AELIO.',code:'companion_subscription_required'},{status:403});
     }
     let data: any = undefined;
     if (req.method !== "GET" && req.method !== "DELETE") {

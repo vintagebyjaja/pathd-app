@@ -1,3 +1,9 @@
+# Current handoff — PATHD0.1.6 (2026-10-30)
+
+The current user authorized remaining pricing/access changes and migration-only pushes with visual review. Pro is$16/month; annual prices and all other monthly prices remain unchanged. Paid AELIO unlocks AELIO/MILA on PATHD using its own allowance, with PATHD+ and Pro career permissions remaining independent. Paid enrollment is not activated. Review docs/releases/PATHD_v0.1.6_REVIEW.md and docs/previews/v0.1.6/README.md. Shared SQL13 lives only in AELIO and requires manual owner application after the reported11/12. Main and production settings remain unchanged. Historical records follow.
+
+---
+
 # Main promotion approved — 2026-10-30
 
 The user approved promoting reviewed PATHD 0.1.3 to main, independently of AELIO. Reviewed application commit: 7c1308c. This promotion adds documentation only; application contents are unchanged. Existing Git-triggered Cloudflare builds are permitted, but no manual deployment, production SQL/settings/secrets were changed. The owner retrieves/applies shared SQL once from AELIO's package.

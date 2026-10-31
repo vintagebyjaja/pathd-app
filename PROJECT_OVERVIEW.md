@@ -1,3 +1,9 @@
+# Current review — PATHD0.1.6 (2026-10-30)
+
+The current user authorized remaining pricing/access changes and migration-only pushes with visual review. Pro is$16/month; annual prices and all other monthly prices remain unchanged. Paid AELIO unlocks AELIO/MILA on PATHD using its own allowance, with PATHD+ and Pro career permissions remaining independent. Paid enrollment is not activated. Review docs/releases/PATHD_v0.1.6_REVIEW.md and docs/previews/v0.1.6/README.md. Shared SQL13 lives only in AELIO and requires manual owner application after the reported11/12. Main and production settings remain unchanged. Historical records follow.
+
+---
+
 # PATHD overview — 0.1.3 migration preview
 
 PATHD remains an independent Next.js career website at mypathd.com, in vintagebyjaja/pathd-app. Its plum/cream interface, jobs, matching, profiles and portfolio workflows remain intact. Shared Supabase identity does not merge subscriptions, permissions, browser sessions or websites.

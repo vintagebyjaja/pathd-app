@@ -1,3 +1,9 @@
+# Migration preview — PATHD0.1.6 (2026-10-30)
+
+The current user authorized remaining pricing/access changes and migration-only pushes with visual review. Pro is$16/month; annual prices and all other monthly prices remain unchanged. Paid AELIO unlocks AELIO/MILA on PATHD using its own allowance, with PATHD+ and Pro career permissions remaining independent. Paid enrollment is not activated. Review docs/releases/PATHD_v0.1.6_REVIEW.md and docs/previews/v0.1.6/README.md. Shared SQL13 lives only in AELIO and requires manual owner application after the reported11/12. Main and production settings remain unchanged. Historical records follow.
+
+---
+
 The reviewed update is approved for main. PATHD remains separate from AELIO; the owner handles shared SQL execution. [MILA preview screenshots](docs/previews/v0.1.3/README.md) · [Setup and shared SQL prerequisites](config/V0_1_3_SETUP.md).
 
 ![Curated MILA public preview](docs/previews/v0.1.3/mila-1440.png)
