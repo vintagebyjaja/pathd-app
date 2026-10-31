@@ -1,3 +1,9 @@
+## Main promotion authorized — 2026-10-31
+
+The owner explicitly approved pushing the reviewed AELIO 1.0.10 and PATHD 0.1.6 changes to their respective main branches. This supersedes earlier no-push review boundaries for those completed updates only. Normal Git-triggered builds may run; no manual deployment, production SQL, secrets or settings changes are authorized. Owner reports shared SQL13 applied. AUREVIA is a new, separate phased integration on local migration for review; do not push that new work or merge it into main without approval. Preserve approved homepage and portraits. Existing hosted integration limits remain documented; local tests do not prove production Auth/inference.
+
+---
+
 # Version history — PATHD0.1.6 (2026-10-30)
 
 The current user authorized remaining pricing/access changes and migration-only pushes with visual review. Pro is$16/month; annual prices and all other monthly prices remain unchanged. Paid AELIO unlocks AELIO/MILA on PATHD using its own allowance, with PATHD+ and Pro career permissions remaining independent. Paid enrollment is not activated. Review docs/releases/PATHD_v0.1.6_REVIEW.md and docs/previews/v0.1.6/README.md. Shared SQL13 lives only in AELIO and requires manual owner application after the reported11/12. Main and production settings remain unchanged. Historical records follow.

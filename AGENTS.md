@@ -1,3 +1,9 @@
+## Main promotion authorized — 2026-10-31
+
+The owner explicitly approved pushing the reviewed AELIO 1.0.10 and PATHD 0.1.6 changes to their respective main branches. This supersedes earlier no-push review boundaries for those completed updates only. Normal Git-triggered builds may run; no manual deployment, production SQL, secrets or settings changes are authorized. Owner reports shared SQL13 applied. AUREVIA is a new, separate phased integration on local migration for review; do not push that new work or merge it into main without approval. Preserve approved homepage and portraits. Existing hosted integration limits remain documented; local tests do not prove production Auth/inference.
+
+---
+
 # PATHD coding instructions
 
 Read PROJECT_OVERVIEW.md and PROJECT_HANDOFF.md. Preserve PATHD's existing plum/cream identity and unrelated features. Work in the existing isolated checkout; no worktrees unless requested.
